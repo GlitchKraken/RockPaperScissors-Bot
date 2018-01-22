@@ -125,7 +125,7 @@ handsign rpsAgentLazySpiffy(const vector<handsign> focal, const vector<handsign>
                 }
 
 
-
+                
 
         }
 

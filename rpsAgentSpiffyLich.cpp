@@ -53,7 +53,7 @@ handsign rpsAgentSpiffyLich(const vector<handsign> focal, const vector<handsign>
 
 
         //first two moves- playing risky against the class' most likely choice,
-        // and setting up for a rock-pick myself.
+        // and setting up for a rock-play myself.
         if(opponent.size() < 2)
         {
                 return paper;
@@ -106,7 +106,7 @@ handsign rpsAgentSpiffyLich(const vector<handsign> focal, const vector<handsign>
                 if(rockPercent > paperPercent && rockPercent > scissorsPercent)
                 {
                         //rock was played the most...
-                        if(rockPercent > 40)
+                        if(rockPercent > 45)
                         {
                             return paper;
                         }
@@ -115,7 +115,7 @@ handsign rpsAgentSpiffyLich(const vector<handsign> focal, const vector<handsign>
                 if(paperPercent > rockPercent && paperPercent > scissorsPercent)
                 {
                         //paper was played the most.
-                        if(paperPercent > 50)
+                        if(paperPercent > 60)
                         {
                             return scissors;
                         }
@@ -123,9 +123,12 @@ handsign rpsAgentSpiffyLich(const vector<handsign> focal, const vector<handsign>
                 if(scissorsPercent > rockPercent && scissorsPercent > paperPercent)
                 {
                         //scissors was played the most, we can comfortably play rock...
-                        return rock;
-                }
+                        if(scissorsPercent > 30)
+                        {
+                            return rock;
+                        }
 
+                }
 
 
 
@@ -133,16 +136,6 @@ handsign rpsAgentSpiffyLich(const vector<handsign> focal, const vector<handsign>
 
         return rock;
 }
-
-/*
-
-   - First, carefully comment your code above.
-   - Here, describe your approach and why you expect it to do well against the
-   other submitted agents.
-   - Also make a note here if you talked about the assignment with anyone or gave
-   or received any kind of help.
-
- */
 
 
 //The logic here is as follows:
@@ -154,3 +147,8 @@ handsign rpsAgentSpiffyLich(const vector<handsign> focal, const vector<handsign>
 //and then proceed to play rock for our third move. *After this*,
 //we should have a decent enough amount of data to analyze to make intelligent decisions
 //against the enemy bot.
+
+//Therefore, after move 3, our bot will scan every decision the enemy has made
+//thus far, and determine what the enemy is most likely to play next.
+//then, it will run a simple statistical analysis to determine whether the
+//counter to that move is worth playing.

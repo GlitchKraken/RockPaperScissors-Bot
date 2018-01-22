@@ -53,7 +53,7 @@ handsign rpsAgentAdjustedPercent(const vector<handsign> focal, const vector<hand
 
 
         //first two moves- playing risky against the class' most likely choice,
-        // and setting up for a rock-pick myself.
+        // and setting up for a rock-play myself.
         if(opponent.size() < 2)
         {
                 return paper;
@@ -106,7 +106,7 @@ handsign rpsAgentAdjustedPercent(const vector<handsign> focal, const vector<hand
                 if(rockPercent > paperPercent && rockPercent > scissorsPercent)
                 {
                         //rock was played the most...
-                        if(rockPercent > 40)
+                        if(rockPercent > 45)
                         {
                             return paper;
                         }
@@ -114,8 +114,10 @@ handsign rpsAgentAdjustedPercent(const vector<handsign> focal, const vector<hand
                 }
                 if(paperPercent > rockPercent && paperPercent > scissorsPercent)
                 {
+
+                    //55 gives decent results...
                         //paper was played the most.
-                        if(paperPercent > 65)
+                        if(paperPercent > 55)
                         {
                             return scissors;
                         }
@@ -123,30 +125,16 @@ handsign rpsAgentAdjustedPercent(const vector<handsign> focal, const vector<hand
                 if(scissorsPercent > rockPercent && scissorsPercent > paperPercent)
                 {
                         //scissors was played the most, we can comfortably play rock...
-                        if(scissorsPercent > 20)
-                        {
-                            return rock;
-                        }
-
+                                return rock;
                 }
 
-//
 
 
         }
 
+
         return rock;
 }
-
-/*
-
-   - First, carefully comment your code above.
-   - Here, describe your approach and why you expect it to do well against the
-   other submitted agents.
-   - Also make a note here if you talked about the assignment with anyone or gave
-   or received any kind of help.
-
- */
 
 
 //The logic here is as follows:
@@ -158,3 +146,8 @@ handsign rpsAgentAdjustedPercent(const vector<handsign> focal, const vector<hand
 //and then proceed to play rock for our third move. *After this*,
 //we should have a decent enough amount of data to analyze to make intelligent decisions
 //against the enemy bot.
+
+//Therefore, after move 3, our bot will scan every decision the enemy has made
+//thus far, and determine what the enemy is most likely to play next.
+//then, it will run a simple statistical analysis to determine whether the
+//counter to that move is worth playing.
